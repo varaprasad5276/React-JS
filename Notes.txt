@@ -1,0 +1,36 @@
+// Inception
+1) what is emmet?
+    Emmet is a free plugin for text editors that allows us to write HTML, CSS, and other code formats 
+    faster by assisting through abbreviations that expand into full code.
+
+2) diiference b/w library and framework
+    A library is a collection of pre-written code that can be used to perform specific tasks. 
+    A framework is a set of pre-written code that provides a structure for developing software applications.
+
+3) what is CDN? why do we use it?
+   A content delivery network (CDN) is a network of interconnected servers that speeds up webpage loading for data-heavy applications. 
+   CDN can stand for content delivery network or content distribution network.
+
+4) why react knows as react?
+   React is a JavaScript library for building user interfaces. It is known for its speed, scalability, and simplicity.
+   React is also known for its component-based architecture, which makes it easy to create reusable and maintainable code.
+
+   The name "React" comes from the way that React components "react" to changes in state. When a component's state changes, 
+   React automatically re-renders the component and its child components. 
+   This makes it easy to create dynamic and interactive user interfaces.
+
+5) what is crossorigin in script tag?
+   The crossorigin attribute sets the mode of the request to an HTTP CORS Request. 
+   Web pages often make requests to load resources on other servers. 
+
+6) what is the diiference between React and ReactDOM?
+   React is the core library that provides the functionality for creating and managing components, 
+   ReactDOM is a separate library that provides DOM-specific methods for rendering React components.
+
+7) what is the diiference between React.development.js  and React.production.js files via CDN?
+   The main difference between React.development.js and React.production.js files via CDN is that 
+   the development version is used for debugging and development purposes, 
+   while the production version is used for production purposes.
+
+===============================================
+ep 2
