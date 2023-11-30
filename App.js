@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+   
+//React Component
+    const Title = ()=>(<h1 className="head" >React using JSX..🚀</h1>);
 
-    const parent=React.createElement("div",{id:"parent"},
-[
-    React.createElement("div",{id:"child"} ,[
-        React.createElement("h1",{},"hello h1" ),
-        React.createElement("h2",{},"i'm h2" )]),
-
-        React.createElement("div",{id:"child2"} ,[
-            React.createElement("h1",{},"i'm h1" ),
-            React.createElement("h2",{},"i'm h2" )])
-]
-   );
-
-   const root=ReactDOM.createRoot(document.getElementById("root"));
-    root.render(parent);
+    //React Component
+    //React Functional Component 
+    const HeadingComponent=(function(){
+        return (
+        <div id="container">
+        <Title />
+         <h1 className="heading"> React Functional Component ..🚀 </h1>
+         </div>
+      )  })
     
+    const root=ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<HeadingComponent />);
