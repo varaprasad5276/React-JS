@@ -1,3 +1,35 @@
 #heading{
     color:greenyellow;
 }
+img{
+    width: 50px;height:50px;
+    border-radius: 50%;
+}
+#logo:hover{
+    transform: scale3d(1.5,1.5,1.5);
+}
+#icon:hover{
+    transform: scale3d(1.5,1.5,1);
+    }
+
+#searchbox
+{
+ width: 300px;height: 30px;
+ border-radius: 20px;border:0px none whitesmoke;
+ margin-top: 10px;
+ margin-left: 10px;
+}
+#searchbox:hover{
+    background-color: aqua;
+    /* border: 3px none whitesmoke; */
+}
+ nav{
+    margin: 10px;
+    border: 1px dotted red;
+    display:flex;
+    justify-content: space-between;
+    background-color: rgb(184, 105, 8);
+}
+nav:hover{
+    background-color: rgb(242, 120, 27);
+}
