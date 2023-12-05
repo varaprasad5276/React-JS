@@ -1,52 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-// first component Header -logo ,nav items (home,about,contact,cart)
-
-const Header=()=>{
-    return(
-<div className="header">
-    <div className="logo-container">
-        <img className="logo" src="https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png"/>
-    </div>
-
-    <div className="nav-items">
-        <ul>
-            <li>HOME</li>
-            <li>ABOUT</li>
-            <li>CONTACT</li>
-            <li>CART</li>
-        </ul>
-    </div>
-</div>
-    );
-};
-
-//body component Body 
-//  - search 
-//  - RestarantContainer
-//     -RestarantCard(img,name,rating,time_of_delivery)  -> we are creating RestarantCard component for reusable(for all cards)
 
 
-const RestarantCard=(Props)=>{
-    const {Rest_data}=Props;
-    const {cloudinaryImageId,name,avgRating :rating,sla,cuisines}=Rest_data?.info;
-    return (
-        <div className="card">
-            <img className="image" alt="image loading" 
-            src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
-            +cloudinaryImageId
-    }/>
-          <div className="content"> 
-           <h3 id='rname'>{name}</h3>
-             <h4 id='rating'>☆ {rating}</h4>
-            <h4 id='time'>. {sla.deliveryTime} Min's</h4>
-            <p id='food'>{cuisines.join(", ")}</p>
-
-            </div>
-            </div>
-    )
-}
 //restarant object have all cards json data 
 
 const resobj=
@@ -1224,47 +1177,4 @@ const resobj=
         }
     ];
 
-const Body=()=>{
-    return (
-        <div className="body">
-     <div className="search">Search</div>
-     <div className="restrant_container">
-        {/* the below given values are Props (properties -name,food)
-                        <RestarantCard name='shah gouse' food='biryani />
-
-         <RestarantCard resData={resobj[0]}/> 
-         js code we can write inside JSX with use of curley braces { }
-         
-         below map function getting all data fron resobj(config/json file) for all cards 
-
-         we are passing below Rest_data to RestarantCards functional component(Rest_data name must & shold common for
-             RestarantCards
-            destructuring also)
-         */}
-        {
-            //when ever we are doing loop/map ,we have always to give key
-            resobj.map((v)=>(
-                <RestarantCard key={v.info.id} Rest_data={v} />
-            ))
-        }
-
-     </div>
-
-     </div>
-    ) 
-}
-
-//APP Layout 
-
-const AppLayout=()=>{
-return (
-    <div className="applayout">
-    <Header />
-    <Body />
-    </div>
-
-);
-};
-
-    const root=ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<AppLayout/>);
+    export default resobj;

@@ -27,6 +27,18 @@ list-style-type: none;
 .search{
     padding: 10px;
 }
+
+.filter-btn{
+margin: 10px;
+background-color: rgb(224, 66, 208);color: whitesmoke;
+border-radius: 15px; border: 1px none;height: 20px;
+cursor: pointer;
+}
+
+.filter-btn:hover{
+background-color: whitesmoke;color:rgb(224, 66, 208);
+}
+
 .restrant_container{
     display: flex;
     flex-wrap: wrap;gap: 0.5em;
