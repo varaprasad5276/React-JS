@@ -49,3 +49,38 @@
 
         3) third component Footer
         copyright ,links , address ,contacts
+===========================================
+      #  "Episode 6 : useEffect-fetch the data from API ,Shimmer UI ,filtered restarunts data "
+
+      -> for filtering search data ,we are creating  new local state variable 
+             let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter restaurants
+         then we are setting the API data for setfilteredRestros
+                     setfilteredRestros(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+      
+      ->   then we are filtering the search data with listofrestros,then we are setting the result of filterd data 
+                  to  setfilteredRestros(ft)
+              <div className="search">
+        <input value={searchText}
+        onChange={(e)=>setsearchText(e.target.value)}
+        ></input>
+        <button className="filter-btn" 
+        onClick={()=>{
+            console.log(searchText) ; 
+     
+            const ft = listofrestros.filter(
+                (value)=>value.info.name.toLowerCase().includes(searchText.toLowerCase())  )
+             setfilteredRestros(ft);
+
+        }}
+        >Search</button>
+    </div> 
+    -> then we are passing the filteredRestros local state variable
+
+      {
+            //when ever we are doing loop/map ,we have always to give key - 
+            
+            filteredRestros.map((v)=>(
+                <RestarantCard key={v.info.id} Rest_data={v} />
+            ))
+            
+        }

@@ -29,7 +29,7 @@ list-style-type: none;
 }
 
 .filter-btn{
-margin: 10px;
+margin: 10px; display: inline-flexbox;
 background-color: rgb(224, 66, 208);color: whitesmoke;
 border-radius: 15px; border: 1px none;height: 20px;
 cursor: pointer;
@@ -64,8 +64,8 @@ background-color: whitesmoke;color:rgb(224, 66, 208);
 
 .content{
     display: grid;
-  gap:20px;
-  max-width:250px;height: 200px;
+  gap:1em;position: relative;
+  width:250px;height: 200px;
   grid-template-rows: 10px 10px 10px;
   grid-template-columns: 10px 10px 30px auto auto;
 
@@ -76,19 +76,48 @@ background-color: whitesmoke;color:rgb(224, 66, 208);
   ;
 }
 #rname{
-    grid-area: a;
+    grid-area: a;text-overflow: ellipsis ;
+    width: 100%; 
+    overflow: hidden;height: 20px;
 }
 #food{
     grid-area: b;   
     text-overflow: ellipsis ;
-   white-space: nowrap;
-  width: 200px;
+   overflow: hidden;height: 20px;
+  width: 100%;
 }
 #rating{
     grid-area: c;
     background-color: rgb(16, 184, 21);
+    width: 45px; 
+    overflow: hidden;height: 20px;
 }
 #time{
     grid-area: d;
 
 }
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;gap: 0.5em;
+    margin: 70px;
+
+}
+.shimmer-card{
+   
+   padding: 5px;
+   width: 260px;height: 130px;
+  border-radius: 10%;
+   margin:  1em ;
+   border: 1px solid bisque;background-color: #f0f0f0;color: rgb(182, 145, 22);
+}
+
+.login{
+    margin: 20px;
+    background-color: rgb(224, 66, 208);color: whitesmoke;
+    border-radius: 15px; border: 1px none;height: 20px;
+    cursor: pointer;}
+
+    .login:hover{
+        background-color: whitesmoke;color:rgb(224, 66, 208);
+        }
