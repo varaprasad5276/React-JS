@@ -2,6 +2,8 @@ import RestarantCard from "./RestarantCard";
 import {useState,useEffect} from "react";
 
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import { RESTARANTS_DATA } from "../Utilities/constants";
 
 //body component Body 
 //  - search 
@@ -12,7 +14,6 @@ const Body=()=>{
 
     // local State variable - Super Power Variable
 let [listofrestros,setlistofrestros]=useState([]);
-
 let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter restaurants
  let [searchText,setsearchText]=useState('');
 
@@ -21,8 +22,8 @@ let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter re
         },[]);
 
     const fetchData=async()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.385044&lng=78.486671&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-        const json= await data.json();
+        const data = await fetch(RESTARANTS_DATA);
+                const json= await data.json();
        // console.log('Swiggy Api JSON Data ');
         //console.log(json);
        // console.log( json.data.cards[5].card.card.gridElements.infoWithStyle.restaurants);
@@ -48,8 +49,7 @@ let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter re
         onChange={(e)=>setsearchText(e.target.value)}
         ></input>
         <button className="filter-btn" 
-        onClick={()=>{
-            console.log(searchText) ; 
+        onClick={()=>{console.log(searchText) ; 
      
             const ft = listofrestros.filter(
                 (value)=>value.info.name.toLowerCase().includes(searchText.toLowerCase())  )
@@ -65,9 +65,9 @@ let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter re
         onClick={
             ()=>{
             const filterdList = listofrestros.filter(
-                (value)=>value.info.avgRating>=4.4 //curley braces not needed because we are using arrow functions,if we use normal functions then we musu use {} braces
+                (value)=>value.info.avgRating>4.0 //curley braces not needed because we are using arrow functions,if we use normal functions then we musu use {} braces
              );
-             console.log(filterdList);
+             //console.log(filterdList);
         setlistofrestros(filterdList);
         }
     }
@@ -82,21 +82,30 @@ let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter re
          <RestarantCard resData={resobj[0]}/> 
          js code we can write inside JSX with use of curley braces { }
          
-         below map function getting all data fron resobj(config/json file) for all cards 
+         below map function getting all data from filteredRestros for all cards from -> import { RESTARANTS_DATA } from "../Utilities/constants";
+
 
          we are passing below Rest_data to RestarantCards functional component(Rest_data name must & shold common for
              RestarantCards
             destructuring also)
          */}
-        {
+        
+
+        {                    
+             searchText.length==0 ?
+             listofrestros.map((restarant)=>(
+                <Link id='link' key={restarant.info.id} 
+                       to={"/restaurants/"+restarant.info.id}>  <RestarantCard Rest_data={restarant} />
+               </Link>
+              )) :
             //when ever we are doing loop/map ,we have always to give key - 
-            
-            filteredRestros.map((v)=>(
-                <RestarantCard key={v.info.id} Rest_data={v} />
+            filteredRestros.map((restarant)=>(
+              <Link id='link' key={restarant.info.id} 
+                     to={"/restaurants/"+restarant.info.id}>  <RestarantCard Rest_data={restarant} />
+             </Link>
             ))
-            
-        }
-       
+}
+
      </div>
            
      </div>
