@@ -218,3 +218,7 @@ height: 45px;
 margin: 10px;background-color: rgb(209, 92, 8);
 }
 
+.user-card{
+    border: 1px solid gray;
+    padding: 5px 10px;margin: 10px;
+}
