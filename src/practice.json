@@ -1,0 +1,24 @@
+{
+  "tables": {
+
+      "hotels": {
+          "primary_key": "hotel_id",
+          "columns": {
+              "hotel_id": { "sdtype": "id", "regex_format": "HID_[0-9]{3}" },
+              "city": { "sdtype": "categorical" },
+              "rating": { "sdtype": "numerical" }
+          }
+      },
+      
+      "guests": {
+          "primary_key": "guest_email",
+          "columns": {
+              "guest_email": { "sdtype": "email" },
+              "hotel_id": { "sdtype": "id", "regex_format": "HID_[0-9]{3}" },
+              "checkin_date": { "sdtype": "datetime", "datetime_format": "%d %b %Y" },
+              "checkout_date": { "sdtype": "datetime", "datetime_format": "%d %b %Y" },
+              "room_type": { "sdtype": "categorical" }
+          }
+      }
+  }
+}

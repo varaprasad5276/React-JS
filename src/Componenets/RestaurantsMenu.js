@@ -1,23 +1,14 @@
-import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { ITEM_MENU_IMAGE_URL ,MENU_API} from "../Utilities/constants";
+import { ITEM_MENU_IMAGE_URL } from "../Utilities/constants";
 import { useParams } from "react-router-dom";
+// The useParams hook returns an object of key/value pairs of the dynamic params from the current URL 
+// that were matched by the <Route path> .
+import useRestarantMenu from "../Utilities/useRestarantMenu";
 
 const RestaurantsMenu=()=>{
+    const {resid}=useParams();
 
-    useEffect(()=>{
-        fetchMenu();
-        },[]);
-    const [menu,setmenu]=useState(null);
-   const {resid}=useParams();
-   //console.log(resid);
-    const fetchMenu= async()=>{
-        const data= await fetch(MENU_API+resid);
-                const json= await data.json();
-       // console.log(json);
-        setmenu(json.data);
-
-    };
+    const menu=useRestarantMenu(resid);// custom hook
 
      if (menu == null ) return ( <Shimmer /> );
 

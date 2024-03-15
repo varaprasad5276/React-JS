@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 
 import Header from "./Componenets/Header";
@@ -10,6 +10,11 @@ import Contact from "./Componenets/Contact";
 import Error from "./Componenets/Error";
 import RestaurantsMenu from "./Componenets/RestaurantsMenu";
 import LogIn from "./Componenets/LogIn";
+// import Grocery from "./Componenets/Grocery";
+import Cart from "./Componenets/Cart";
+
+const Grocery = lazy(()=>import('./Componenets/Grocery'));
+const About = lazy(()=>import('./Componenets/About'));
 
 
 //APP Layout 
@@ -36,12 +41,20 @@ const appRouter =createBrowserRouter([
           },
           {
             path:"/About",
-            element:<About />,
+            element:<Suspense fallback='Loading About Page..'><About /></Suspense>
         
            },
            {
             path:"/Contact",
             element:<Contact />
+           },
+           {
+            path:"/Grocery",
+            element:<Suspense fallback='Loading Grocery Page..'><Grocery /></Suspense>
+           },
+           {
+            path:"/Cart",
+            element:<Cart />
            },
            {
             path:"/Restaurants/:resid",  // :res id is dynamic 
@@ -50,7 +63,8 @@ const appRouter =createBrowserRouter([
            {
             path:"/LogIn",
             element:<LogIn />
-           }
+           },
+         
     ],
      errorElement: <Error />
 

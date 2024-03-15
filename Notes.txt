@@ -593,3 +593,18 @@ our component. super() is used inside constructor of a class to derive the paren
 A: useEffect expects it's callback function to return nothing or return a function (cleanup function that is called when the component is unmounted). 
 If we make the callback function as async, it will return a promise and the promise will affect the clean-up function from being called.
 
+===========
+Episode 9:
+
+1)When and why do we need lazy()?
+In React, the react.lazy() function allows developers to create components with dynamic imports and render them as regular components. When a component is rendered, the bundle that contains it is automatically loaded. This technique is called lazy loading, and it allows developers to load components, modules, or assets asynchronously, which improves the loading time of an application.
+
+2)What is suspense?
+React suspense is a built-in React component which lets you temporarily render a fallback UI while its children are still loading. 
+
+3)When do we and why do we need suspense?
+
+<Suspense> lets you display a fallback until its children have finished loading.
+
+children: The actual UI you intend to render. If children suspends while rendering, the Suspense boundary will switch to rendering fallback.
+fallback: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to fallback when children suspends, and back to children when the data is ready. If fallback suspends while rendering, it will activate the closest parent Suspense boundary.
