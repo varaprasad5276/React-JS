@@ -608,3 +608,21 @@ React suspense is a built-in React component which lets you temporarily render a
 
 children: The actual UI you intend to render. If children suspends while rendering, the Suspense boundary will switch to rendering fallback.
 fallback: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to fallback when children suspends, and back to children when the data is ready. If fallback suspends while rendering, it will activate the closest parent Suspense boundary.
+
+=========
+Episode 10:
+
+1)In tailwind.config.js, what does all the keys mean (content, theme, extend,
+plugins)?
+
+Content:
+The content key specifies the paths to all of the HTML templates, JS components, and any other files that contain Tailwind class names. This helps Tailwind CSS to generate the CSS classes that are actually used in your project.
+Theme:
+The theme key is used to customize various aspects of the Tailwind theme. This includes things like the color palette, fonts, border sizes, and breakpoints.
+Extend:
+The extend key is used to add customizations on top of the default theme. This can be useful for adding custom colors, font families, and animations.
+Plugins:
+The plugins key is used to add third-party plugins to the Tailwind setup. Plugins can add additional functionality to Tailwind CSS, such as the ability to generate custom components or base styles.
+2)Why do we have .postcssrc file?
+
+PostCSS is a tool that uses JavaScript plugins to transform CSS code into an abstract syntax tree (AST). 

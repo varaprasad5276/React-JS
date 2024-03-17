@@ -1,90 +1,95 @@
 import RestarantCard from "./RestarantCard";
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { RESTARANTS_DATA } from "../Utilities/constants";
 import useOnlineStatus from "../Utilities/useOnlineStatus";
 
-//body component Body 
-//  - search 
+//body component Body
+//  - search
 //  - RestarantContainer
 //     -RestarantCard(img,name,rating,time_of_delivery)  -> we are creating RestarantCard component for reusable(for all cards)
 
-const Body=()=>{
+const Body = () => {
+  // local State variable - Super Power Variable
+  let [listofrestros, setlistofrestros] = useState([]);
+  let [filteredRestros, setfilteredRestros] = useState([]); // for searched filter restaurants
+  let [searchText, setsearchText] = useState("");
 
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    // local State variable - Super Power Variable
-let [listofrestros,setlistofrestros]=useState([]);
-let [filteredRestros,setfilteredRestros]=useState([]); // for searched filter restaurants
- let [searchText,setsearchText]=useState('');
-
-
-    useEffect(()=>{
-        fetchData();
-        },[]);
-
-    const fetchData=async()=>{
-        const data = await fetch(RESTARANTS_DATA);
-                const json= await data.json();
-      // console.log('Swiggy Api JSON Data ');
-       // console.log(json);
-       console.log( json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
-       
-       // optional chaining (?.) for good way to write code
-        setlistofrestros(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setfilteredRestros(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-
-    }    
-// shows online status 
-    const onlineStatus=useOnlineStatus();
-    if(onlineStatus == false )
-    return (
-    <h1>You are Offline, Pleace Check Your Internet Connection</h1>
+  const fetchData = async () => {
+    const data = await fetch(RESTARANTS_DATA);
+    const json = await data.json();
+    // console.log('Swiggy Api JSON Data ');
+    // console.log(json);
+    console.log(
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
 
-// Shimmer UI for until get API data
-//conditional rendering
-//  if(listofrestros.length === 0) //condition
-//  {
-//      return <Shimmer />       //rendering
-//  }
-   
-return   listofrestros.length === 0 ? <Shimmer /> : //terinary operator ,shimmer UI
-    (
-        <div className="body">
-     <div className="search">
-        <input value={searchText}
-        onChange={(e)=>setsearchText(e.target.value)}
+    // optional chaining (?.) for good way to write code
+    setlistofrestros(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setfilteredRestros(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+  // shows online status
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus == false)
+    return <h1>You are Offline, Pleace Check Your Internet Connection</h1>;
+
+  // Shimmer UI for until get API data
+  //conditional rendering
+  //  if(listofrestros.length === 0) //condition
+  //  {
+  //      return <Shimmer />       //rendering
+  //  }
+
+  return listofrestros.length === 0 ? (
+    <Shimmer /> //terinary operator ,shimmer UI
+  ) : (
+    <div >
+      <div className="flex items-center" >
+        <input className="border border-solid border-black m-3 ml-12 h-7 pl-2"
+          value={searchText}
+          onChange={(e) => setsearchText(e.target.value)}
         ></input>
-        <button className="filter-btn" 
-        onClick={()=>{console.log(searchText) ; 
-     
-            const ft = listofrestros.filter(
-                (value)=>value.info.name.toLowerCase().includes(searchText.toLowerCase())  )
-             setfilteredRestros(ft);
+        <button
+          className=" rounded-lg w-16 m-4 bg-orange-400 hover:bg-white"
+          onClick={() => {
+            console.log(searchText);
 
-        }}
-        >Search</button>
-    </div> 
-
-
-     <div className="filter">
-        <button className="filter-btn"
-        onClick={
-            ()=>{
-            const filterdList = listofrestros.filter(
-                (value)=>value.info.avgRating>4.0 //curley braces not needed because we are using arrow functions,if we use normal functions then we musu use {} braces
-             );
-             //console.log(filterdList);
-        setlistofrestros(filterdList);
-        }
-    }
-        
-        > Top Rated 
+            const ft = listofrestros.filter((value) =>
+              value.info.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setfilteredRestros(ft);
+          }}
+        >
+          Search
         </button>
-     </div>
-     <div className="restrant_container">
+      
+
+      <div className="filter">
+        <button
+          className="bg-green-400 m-4 w-24 rounded-lg hover:bg-white" 
+          onClick={() => {
+            const filterdList = listofrestros.filter(
+              (value) => value.info.avgRating > 4.0 //curley braces not needed because we are using arrow functions,if we use normal functions then we musu use {} braces
+            );
+            //console.log(filterdList);
+            setlistofrestros(filterdList);
+          }}
+        >
+          {" "}
+          Top Rated
+        </button></div>
+      </div>
+      <div className="flex flex-wrap  mt-10 gap-5 ml-[150px] rounded-2xl">
         {/* the below given values are Props (properties -name,food)
                         <RestarantCard name='shah gouse' food='biryani />
 
@@ -98,29 +103,32 @@ return   listofrestros.length === 0 ? <Shimmer /> : //terinary operator ,shimmer
              RestarantCards
             destructuring also)
          */}
-        
 
-        {                    
-             searchText.length==0 ?
-             listofrestros.map((restarant)=>(
-                <Link id='link' key={restarant.info.id} 
-                       to={"/restaurants/"+restarant.info.id}>  <RestarantCard Rest_data={restarant} />
-               </Link>
-              )) :
-            //when ever we are doing loop/map ,we have always to give key - 
-            filteredRestros.map((restarant)=>(
-              <Link id='link' key={restarant.info.id} 
-                     to={"/restaurants/"+restarant.info.id}>  <RestarantCard Rest_data={restarant} />
-             </Link>
+        {searchText.length == 0
+          ? listofrestros.map((restarant) => (
+              <Link
+                id="link"
+                key={restarant.info.id}
+                to={"/restaurants/" + restarant.info.id}
+              >
+                {" "}
+                <RestarantCard Rest_data={restarant} />
+              </Link>
             ))
-}
-
-     </div>
-           
-     </div>
-    )
-}
-
-
+          : //when ever we are doing loop/map ,we have always to give key -
+            filteredRestros.map((restarant) => (
+              <Link
+                id="link"
+                key={restarant.info.id}
+                to={"/restaurants/" + restarant.info.id}
+              >
+                {" "}
+                <RestarantCard Rest_data={restarant} />
+              </Link>
+            ))}
+      </div>
+    </div>
+  );
+};
 
 export default Body;

@@ -12,28 +12,28 @@ import LogIn from "./LogIn";
   let [theme,settheme]=useState('white');
 
     return(
-<div className="header">
+<div className="flex justify-between bg-purple-600 h-24 m-2 shadow-xl">
     <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
+        <img className="w-36 h-24" src={LOGO_URL} />
         </div>
 
-    <div className="nav-items">
+    <div className="flex items-center ">
       
-        <ul>
+        <ul className="flex ">
             <li>Online Status:{onlineStatus ? "✅" : "🔴"}</li>
-            <button className="theme"
+            <button className="px-3 text-emerald-50	"
             onClick={()=>{
                 theme=='white' ? settheme(document.body.style.background = 'orange') : settheme(document.body.style = 'white');
                 console.log(theme);
             }}
             >THEME</button>
-            <li><Link to='/'>HOME</Link></li>
-            <li><Link to='/about'>ABOUT</Link></li>
-            <li><Link to='/contact'>CONTACT</Link></li>
-            <li><Link to='/grocery'>Grocery</Link></li>
+            <li className="px-3"><Link to='/'>HOME</Link></li>
+            <li className="px-3"><Link to='/about'>ABOUT</Link></li>
+            <li className="px-3"><Link to='/contact'>CONTACT</Link></li>
+            <li className="px-3"><Link to='/grocery'>Grocery</Link></li>
 
-            <li><Link to='/cart'>CART</Link></li>
-          <li> <Link to={'./LogIn'}> LOG IN</Link></li>
+            <li className="px-3"><Link to='/cart'>CART</Link></li>
+          <li className="px-3"> <Link to={'./LogIn'}> LOG IN</Link></li>
         </ul>
     </div>
 </div>
