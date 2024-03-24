@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { LOGO_URL } from "../Utilities/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Utilities/useOnlineStatus";
+import userContext from "../Utilities/UserContext";
 
 // first component Header 
 //-logo ,nav items (home,about,contact,cart)
@@ -10,6 +11,9 @@ import LogIn from "./LogIn";
   let [btn_name,setbtn_name]=useState('Log In');
   const onlineStatus=useOnlineStatus();
   let [theme,settheme]=useState('white');
+
+  const {loggedInUser}=useContext(userContext);
+  console.log(loggedInUser);
 
     return(
 <div className="flex justify-between bg-purple-600 h-24 m-2 shadow-xl">
@@ -34,6 +38,8 @@ import LogIn from "./LogIn";
 
             <li className="px-3"><Link to='/cart'>CART</Link></li>
           <li className="px-3"> <Link to={'./LogIn'}> LOG IN</Link></li>
+          <li className="px-3">{loggedInUser}</li>
+
         </ul>
     </div>
 </div>

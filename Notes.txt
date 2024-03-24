@@ -626,3 +626,20 @@ The plugins key is used to add third-party plugins to the Tailwind setup. Plugin
 2)Why do we have .postcssrc file?
 
 PostCSS is a tool that uses JavaScript plugins to transform CSS code into an abstract syntax tree (AST). 
+
+=============
+Episode 10 - Data is the new Oil
+
+● What is prop drilling?
+
+Prop drilling is a fundamental concept in React that involves passing data down through nested components in a React application.
+● What is lifting the state up?
+
+Lifting state up is a technique used in React to share state between multiple components. It involves moving state from a lower-level component to a higher-level component, so that it can be shared between multiple child components
+● What is Context Provider and Context Consumer?
+
+
+The provider is responsible for creating and managing the context, which holds the data to be shared between components. On the other hand, the consumer is used to access the context and its data from within a component.
+● If you don’t pass a value to the provider does it take the default value?
+
+The default value is only used when a component does not have a matching Provider above it in the tree. If no value is passed to the provider, then undefined is returned.

@@ -1,11 +1,11 @@
-import RestarantCard from "./RestarantCard";
-import { useState, useEffect } from "react";
+import RestarantCard,{withPromotedLabel} from "./RestarantCard";
+import { useState, useEffect ,useContext} from "react";
 
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { RESTARANTS_DATA } from "../Utilities/constants";
 import useOnlineStatus from "../Utilities/useOnlineStatus";
-
+import userContext from "../Utilities/UserContext";
 //body component Body
 //  - search
 //  - RestarantContainer
@@ -13,19 +13,22 @@ import useOnlineStatus from "../Utilities/useOnlineStatus";
 
 const Body = () => {
   // local State variable - Super Power Variable
-  let [listofrestros, setlistofrestros] = useState([]);
-  let [filteredRestros, setfilteredRestros] = useState([]); // for searched filter restaurants
-  let [searchText, setsearchText] = useState("");
+  const [listofrestros, setlistofrestros] = useState([]);
+  const [filteredRestros, setfilteredRestros] = useState([]); // for searched filter restaurants
+  const [searchText, setsearchText] = useState("");
+  const RestarantCardPromoted=withPromotedLabel(RestarantCard);
 
+  const {setuserName,loggedInUser}=useContext(userContext)
   useEffect(() => {
     fetchData();
   }, []);
+  console.log(listofrestros);
 
   const fetchData = async () => {
     const data = await fetch(RESTARANTS_DATA);
     const json = await data.json();
     // console.log('Swiggy Api JSON Data ');
-    // console.log(json);
+    console.log(json);
     console.log(
       json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
@@ -87,8 +90,19 @@ const Body = () => {
         >
           {" "}
           Top Rated
-        </button></div>
+        </button>
+        </div>
+
+        <div className="border border-black ">
+    <input type="text"  
+    value={loggedInUser}
+    onChange={(e)=>setuserName(e.target.value)}
+    />
+        </div>
       </div>
+
+
+      
       <div className="flex flex-wrap  mt-10 gap-5 ml-[150px] rounded-2xl">
         {/* the below given values are Props (properties -name,food)
                         <RestarantCard name='shah gouse' food='biryani />
@@ -111,8 +125,9 @@ const Body = () => {
                 key={restarant.info.id}
                 to={"/restaurants/" + restarant.info.id}
               >
-                {" "}
-                <RestarantCard Rest_data={restarant} />
+               { restarant.info.avgRating >4 ? <RestarantCardPromoted Rest_data={restarant}/> :             
+                   <RestarantCard Rest_data={restarant} />}
+
               </Link>
             ))
           : //when ever we are doing loop/map ,we have always to give key -
@@ -122,7 +137,6 @@ const Body = () => {
                 key={restarant.info.id}
                 to={"/restaurants/" + restarant.info.id}
               >
-                {" "}
                 <RestarantCard Rest_data={restarant} />
               </Link>
             ))}
