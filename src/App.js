@@ -14,6 +14,9 @@ import LogIn from "./Componenets/LogIn";
 import Cart from "./Componenets/Cart";
 import userContext from "./Utilities/UserContext";
 
+import { Provider } from "react-redux";
+import appStore from "./Utilities/Redux/appStore";
+
 const Grocery = lazy(()=>import('./Componenets/Grocery'));
 const About = lazy(()=>import('./Componenets/About'));
 
@@ -29,12 +32,15 @@ const data={
 setuserName(data.name)
   },[])
 return (
+  // connscting our store(appStore) to our App through Provider
+  <Provider store={appStore} > 
   <userContext.Provider value={{loggedInUser:userName ,setuserName}}>
     <div className="applayout">
     <Header />
     <Outlet />
     </div>
     </userContext.Provider>
+    </Provider>
 
 );
 };

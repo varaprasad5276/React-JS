@@ -84,3 +84,14 @@
             ))
             
         }
+
+  
+  ================
+
+  # Redux Toolkit
+  - install @reduxjs/toolkit and react-redux
+  - build our store
+  - connect our store to our app
+  - slice (cart slice)
+  - dispactch (action)
+  - selector

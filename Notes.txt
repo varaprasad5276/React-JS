@@ -643,3 +643,57 @@ The provider is responsible for creating and managing the context, which holds t
 ● If you don’t pass a value to the provider does it take the default value?
 
 The default value is only used when a component does not have a matching Provider above it in the tree. If no value is passed to the provider, then undefined is returned.
+
+===============
+Episode 11 : Lets Build our Store
+
+1) useContext vs Redux.
+
+UseContext :
+A React hook that allows you to access and update content from anywhere in a component tree. It is most useful for sharing data that is considered “global” for a tree of React components. UseContext is a lightweight option for small to medium-sized apps with limited shared state.
+
+Redux :
+An open-source external library that provides a state container for JavaScript applications. Redux works well with many shared states. However, it is crucial to avoid excessive shared states as it can make the code more complex and error-prone in the long run. Redux is apt for scenarios necessitating complex state management shared across the entire application
+2) Advantage of using Redux Toolkit over Redux.
+
+Redux ToolKit(RTK):
+Redux Toolkit is used for writing redux code but in a more concise way. Redux Toolkit (RTK) solves problems that most of the developer’s face who used redux in a react application. RTK abstracts the basic redux code and provides us boilerplates that enable us to write redux code in less lines of code
+
+Issues with basic Redux:
+Configuring a Redux store is too complicated
+Have to add a lot of packages to build a large-scale application
+Redux requires too much boilerplate code which makes it cumbersome to write efficient and clean code.
+
+Reasons for preferring RTK(Redux ToolKit):
+Redux ToolKit solves various issues by providing a hook-based implementation of Redux 
+RTK gives the ability to write mutable state updates in the reducers.
+It also eliminates the use of extra coding by providing boilerplates.
+RTK also has the feature of RTK query which eliminates the use of Thunks and makes the query processing faster
+It also provides automatic support for Redux Dev-tools Extension and for immer.js library which is a great tool to deal with immutable objects. 
+You can also use the various predefined functions of Redux Toolkit which not only speeds up the process but also saves time.
+
+3) Explain Dispatcher.
+
+ the dispatch function is a core principle that allows you to send actions into the store and trigger a state change. You can call the dispatch function with store.dispatch. When an action is dispatched, the Redux store executes a corresponding reducer function to update the state
+4) Explain Reducer.
+
+A reducer in Redux is a pure function that takes the current state and an action as arguments, and returns a new state result. Reducers are responsible for handling all of the actions that are dispatched, and calculating what the entire new state result should be every time.
+
+5) Explain slice.
+
+A slice is the portion of Redux code that relates to a specific set of data and actions within the store 's state. A slice reducer is the reducer responsible for handling actions and updating the data for a given slice. This allows for smaller reducer functions that focus on a slice of state.
+
+6) Explain selector.
+
+A selector is a pure function that takes a state object from the Redux store and returns some information extracted from that state object.
+7) Explain createSlice and the configuration it takes.
+
+Redux Toolkit's createSlice is a function that helps you simplify and reduce the code needed when creating application slices. It takes an object of options as an argument, and the options are:
+
+Name: : The slice name used as the prefix of the generated action.
+InitialState: : The initial value for the state to be used by the reducer.
+Reducers: : An object containing action names as keys and their corresponding case reducers as values. The keys are used to generate action creators with the same names.
+
+createSlice internally uses createAction and createReducer. It looks at all the functions that are defined in the reducers field and for every case generates an action creator that uses the name of the reducer as the action type itself.
+
+createSlice is a higher order function that takes a slice name, a set of reducers, and returns a single reducer and the action creators for that reducer. The goal of createSlice is to reduce the boilerplate required to add data to redux.

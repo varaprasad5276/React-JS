@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { ITEM_MENU_IMAGE_URL } from "../Utilities/constants";
+import {  useDispatch } from "react-redux";
+import { addItem } from "../Utilities/Redux/cartSlice";
 
 const ItemList = ({ items }) => {
   // console.log(items);
-  function button() {
-    alert("button clciked");
+  const dispatch=useDispatch();
+  function addItemToCart(item) {
+    // Dispatch the action
+    dispatch(addItem(item))
   }
 
   return (
@@ -32,7 +36,7 @@ const ItemList = ({ items }) => {
           </div>
           <button
             className=" text-white bg-black sticky ml-[37rem] rounded-md"
-            onClick={button}
+            onClick={()=>addItemToCart(item)}
           >
             Add +
           </button>

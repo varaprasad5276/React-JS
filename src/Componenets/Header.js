@@ -7,6 +7,7 @@ import userContext from "../Utilities/UserContext";
 // first component Header 
 //-logo ,nav items (home,about,contact,cart)
 import LogIn from "./LogIn";
+import { useSelector } from "react-redux";
  const Header=()=>{
   let [btn_name,setbtn_name]=useState('Log In');
   const onlineStatus=useOnlineStatus();
@@ -14,7 +15,10 @@ import LogIn from "./LogIn";
 
   const {loggedInUser}=useContext(userContext);
   console.log(loggedInUser);
-
+// subscribing to the store using a Selector 
+   const cartItems=useSelector((store)=>store.cart.items);
+   console.log(cartItems);
+   
     return(
 <div className="flex justify-between bg-purple-600 h-24 m-2 shadow-xl">
     <div className="logo-container">
@@ -36,7 +40,7 @@ import LogIn from "./LogIn";
             <li className="px-3"><Link to='/contact'>CONTACT</Link></li>
             <li className="px-3"><Link to='/grocery'>Grocery</Link></li>
 
-            <li className="px-3"><Link to='/cart'>CART</Link></li>
+            <li className="px-3"><Link to='/cart'>CART - {cartItems.length} items</Link></li>
           <li className="px-3"> <Link to={'./LogIn'}> LOG IN</Link></li>
           <li className="px-3">{loggedInUser}</li>
 
