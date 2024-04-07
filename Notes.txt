@@ -628,7 +628,7 @@ The plugins key is used to add third-party plugins to the Tailwind setup. Plugin
 PostCSS is a tool that uses JavaScript plugins to transform CSS code into an abstract syntax tree (AST). 
 
 =============
-Episode 10 - Data is the new Oil
+Episode 11 - Data is the new Oil
 
 ● What is prop drilling?
 
@@ -645,7 +645,7 @@ The provider is responsible for creating and managing the context, which holds t
 The default value is only used when a component does not have a matching Provider above it in the tree. If no value is passed to the provider, then undefined is returned.
 
 ===============
-Episode 11 : Lets Build our Store
+Episode 12 : Lets Build our Store
 
 1) useContext vs Redux.
 
@@ -697,3 +697,25 @@ Reducers: : An object containing action names as keys and their corresponding ca
 createSlice internally uses createAction and createReducer. It looks at all the functions that are defined in the reducers field and for every case generates an action creator that uses the name of the reducer as the action type itself.
 
 createSlice is a higher order function that takes a slice name, a set of reducers, and returns a single reducer and the action creators for that reducer. The goal of createSlice is to reduce the boilerplate required to add data to redux.
+
+=======================
+
+Episode 13 : Time for the test
+
+1) What are different types for testing?
+  Unit Testing.
+Integration Testing.
+End to End Testing. Solutions.
+
+2)What is Enzyme?
+Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output. 
+
+3) Enzyme vs React Testing Library
+
+Enzyme is a popular testing tool for React applications. It provides a set of utility functions for testing React components, similar to React Testing Library.
+ Enzyme, on the other hand, differs from React Testing Library because it focuses on testing the implementation details of your components.
+
+4)What is Jest and why do we use it?
+
+Jest is a JavaScript testing framework designed to ensure correctness of any JavaScript codebase.
+ It allows you to write tests with an approachable, familiar and feature-rich API that gives you results quickly.

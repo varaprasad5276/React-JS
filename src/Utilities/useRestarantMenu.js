@@ -9,10 +9,10 @@ const useRestarantMenu=(resid)=>{
     
     const fetchData=async()=>{
         const data= await fetch(MENU_API+resid);
-        console.log(data);
-        const json= await data.json();
-        setmenu(json.data);
-        //console.log(json.data);
+        // console.log(data);
+        const json= await data?.json();
+        setmenu(json?.data);
+        // console.log(json.data);
     }
     return menu;
 }

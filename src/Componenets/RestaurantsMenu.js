@@ -15,13 +15,13 @@ const RestaurantsMenu = () => {
   const menu = useRestarantMenu(resid); // custom hook
 
   if (menu == null) return <Shimmer />;
-  console.log(menu);
+  // console.log(menu);
 
   const { name, cuisines, costForTwoMessage, areaName, sla, avgRating } =
     menu?.cards[2].card?.card?.info;
   // const { itemCards } =
   //   menu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-  console.log(menu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR); //card 1 to
+  // console.log(menu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR); //card 1 to
 
   const categories =
     menu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -31,8 +31,8 @@ const RestaurantsMenu = () => {
     );
 
   // card.filter(c=>c.cards?.["card."]["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
-  console.log(showIndex);
-  console.log(categories);
+  // console.log(showIndex);
+  // console.log(categories);
 
   // const {id,name : item_name,price,defaultPrice,description,imageId}=item.card.info;
 

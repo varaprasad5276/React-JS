@@ -6,7 +6,7 @@ const RestarantCategory = ({ data, showItems, setshowIndex }) => {
   function handleclick() {
     setshowIndex();
   }
-  console.log(showItems);
+  // console.log(showItems);
   return (
     <div>
       {/* accordion header */}

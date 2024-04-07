@@ -1,4 +1,4 @@
-import RestarantCard,{withPromotedLabel} from "./RestarantCard";
+import RestarantCard,{WithPromotedLabel} from "./RestarantCard";
 import { useState, useEffect ,useContext} from "react";
 
 import Shimmer from "./Shimmer";
@@ -16,22 +16,22 @@ const Body = () => {
   const [listofrestros, setlistofrestros] = useState([]);
   const [filteredRestros, setfilteredRestros] = useState([]); // for searched filter restaurants
   const [searchText, setsearchText] = useState("");
-  const RestarantCardPromoted=withPromotedLabel(RestarantCard);
+  const RestarantCardPromoted=WithPromotedLabel(RestarantCard);
 
   const {setuserName,loggedInUser}=useContext(userContext)
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(listofrestros);
+  // console.log(listofrestros);
 
   const fetchData = async () => {
     const data = await fetch(RESTARANTS_DATA);
     const json = await data.json();
     // console.log('Swiggy Api JSON Data ');
-    console.log(json);
-    console.log(
-      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
-    );
+    // console.log(json);
+    // console.log(
+    //   json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    // );
 
     // optional chaining (?.) for good way to write code
     setlistofrestros(
@@ -59,6 +59,7 @@ const Body = () => {
     <div >
       <div className="flex items-center" >
         <input className="border border-solid border-black m-3 ml-12 h-7 pl-2"
+         data-testid="searchInput"
           value={searchText}
           onChange={(e) => setsearchText(e.target.value)}
         ></input>

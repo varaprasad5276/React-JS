@@ -12,7 +12,7 @@ const RestarantCard=(Props)=>{
     const {loggedInUser}=useContext(userContext)
 
     return (
-        <div className=" ml-4  w-[250px] h-[250px]   hover:scale-90" >
+        <div className=" ml-4  w-[250px] h-[250px]   hover:scale-90" data-testid="resCard">
            <img className="h-[130px] w-[250px] rounded-2xl" alt="image loading"  src={ RESTARANR_CARD_IMAGES_URL+cloudinaryImageId   }/>
           <div className="ml-2"> 
               <h3 className="font-bold text-nowrap overflow-hidden text-ellipsis" >{name}</h3>
@@ -33,7 +33,7 @@ const RestarantCard=(Props)=>{
     )
 }
 //high ordered component
-export const withPromotedLabel=(RestarantCard)=>{
+export const WithPromotedLabel=(RestarantCard)=>{
 return (Props)=>{
   return (
     <div>

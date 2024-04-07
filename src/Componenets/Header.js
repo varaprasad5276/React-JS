@@ -8,21 +8,24 @@ import userContext from "../Utilities/UserContext";
 //-logo ,nav items (home,about,contact,cart)
 import LogIn from "./LogIn";
 import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
  const Header=()=>{
   let [btn_name,setbtn_name]=useState('Log In');
   const onlineStatus=useOnlineStatus();
-  let [theme,settheme]=useState('white');
+  const [theme,settheme]=useState('white');
+const [darkMode,setDarkMode]=useState('🌞')
 
   const {loggedInUser}=useContext(userContext);
-  console.log(loggedInUser);
+//   console.log(loggedInUser);
+
 // subscribing to the store using a Selector 
    const cartItems=useSelector((store)=>store.cart.items);
-   console.log(cartItems);
+//    console.log(cartItems);
    
     return(
 <div className="flex justify-between bg-purple-600 h-24 m-2 shadow-xl">
-    <div className="logo-container">
-        <img className="w-36 h-24" src={LOGO_URL} />
+    <div className="logo-container" data-testid="logo">
+        <img className="w-36 h-24" src={LOGO_URL} alt="logo"/>
         </div>
 
     <div className="flex items-center ">
@@ -33,15 +36,21 @@ import { useSelector } from "react-redux";
             onClick={()=>{
                 theme=='white' ? settheme(document.body.style.background = 'orange') : settheme(document.body.style = 'white');
                 console.log(theme);
+                darkMode==='🌚'? setDarkMode('🌞'):setDarkMode('🌚');
             }}
-            >THEME</button>
+            > {darkMode}</button>
             <li className="px-3"><Link to='/'>HOME</Link></li>
             <li className="px-3"><Link to='/about'>ABOUT</Link></li>
             <li className="px-3"><Link to='/contact'>CONTACT</Link></li>
             <li className="px-3"><Link to='/grocery'>Grocery</Link></li>
 
-            <li className="px-3"><Link to='/cart'>CART - {cartItems.length} items</Link></li>
-          <li className="px-3"> <Link to={'./LogIn'}> LOG IN</Link></li>
+            <li className="px-3"><Link to='/cart'>Cart - {cartItems.length} items</Link></li>
+          <li className="px-3">
+             {/* <Link to={'./LogIn'}> LOG IN</Link> */}
+             <Button onClick={()=>{
+                btn_name==='Log In'?setbtn_name("Log Out"):setbtn_name("Log In");
+             }}>{btn_name}</Button>
+             </li>
           <li className="px-3">{loggedInUser}</li>
 
         </ul>
