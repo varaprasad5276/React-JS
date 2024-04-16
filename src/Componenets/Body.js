@@ -1,5 +1,5 @@
-import RestarantCard,{WithPromotedLabel} from "./RestarantCard";
-import { useState, useEffect ,useContext} from "react";
+import RestarantCard, { WithPromotedLabel } from "./RestarantCard";
+import { useState, useEffect, useContext } from "react";
 
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -16,9 +16,9 @@ const Body = () => {
   const [listofrestros, setlistofrestros] = useState([]);
   const [filteredRestros, setfilteredRestros] = useState([]); // for searched filter restaurants
   const [searchText, setsearchText] = useState("");
-  const RestarantCardPromoted=WithPromotedLabel(RestarantCard);
+  const RestarantCardPromoted = WithPromotedLabel(RestarantCard);
 
-  const {setuserName,loggedInUser}=useContext(userContext)
+  const { setuserName, loggedInUser } = useContext(userContext);
   useEffect(() => {
     fetchData();
   }, []);
@@ -56,15 +56,17 @@ const Body = () => {
   return listofrestros.length === 0 ? (
     <Shimmer /> //terinary operator ,shimmer UI
   ) : (
-    <div >
-      <div className="flex items-center" >
-        <input className="border border-solid border-black m-3 ml-12 h-7 pl-2"
-         data-testid="searchInput"
+    <div>
+      <div className="flex items-center justify-center mt-5">
+        <div className="">
+        <input
+          className="border border-black  ml-12 h-10 pl-2 w-[20rem] "
+          data-testid="searchInput"
           value={searchText}
           onChange={(e) => setsearchText(e.target.value)}
         ></input>
         <button
-          className=" rounded-lg w-16 m-4 bg-orange-400 hover:bg-white"
+          className="  w-16  bg-orange-400 hover:bg-green-300 border border-black h-10 text-white"
           onClick={() => {
             console.log(searchText);
 
@@ -76,34 +78,32 @@ const Body = () => {
         >
           Search
         </button>
-      
-
-      <div className="filter">
-        <button
-          className="bg-green-400 m-4 w-24 rounded-lg hover:bg-white" 
-          onClick={() => {
-            const filterdList = listofrestros.filter(
-              (value) => value.info.avgRating > 4.0 //curley braces not needed because we are using arrow functions,if we use normal functions then we musu use {} braces
-            );
-            //console.log(filterdList);
-            setlistofrestros(filterdList);
-          }}
-        >
-          {" "}
-          Top Rated
-        </button>
         </div>
 
-        <div className="border border-black ">
-    <input type="text"  
-    value={loggedInUser}
-    onChange={(e)=>setuserName(e.target.value)}
-    />
+        <div className="filter">
+          {/* <button
+            className="bg-green-400 m-4 w-24 rounded-lg hover:bg-orange-300"
+            onClick={() => {
+              const filterdList = listofrestros.filter(
+                (value) => value.info.avgRating > 4.0 //curley braces not needed because we are using arrow functions,if we use normal functions then we musu use {} braces
+              );
+              //console.log(filterdList);
+              setlistofrestros(filterdList);
+            }}
+          >
+            Top Rated
+          </button> */}
         </div>
+
+      {/*  <div className="border border-black ">
+          <input
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setuserName(e.target.value)}
+          />
+          </div> */}
       </div>
 
-
-      
       <div className="flex flex-wrap  mt-10 gap-5 ml-[150px] rounded-2xl">
         {/* the below given values are Props (properties -name,food)
                         <RestarantCard name='shah gouse' food='biryani />
@@ -126,9 +126,11 @@ const Body = () => {
                 key={restarant.info.id}
                 to={"/restaurants/" + restarant.info.id}
               >
-               { restarant.info.avgRating >4 ? <RestarantCardPromoted Rest_data={restarant}/> :             
-                   <RestarantCard Rest_data={restarant} />}
-
+                {restarant.info.avgRating > 4 ? (
+                  <RestarantCardPromoted Rest_data={restarant} />
+                ) : (
+                  <RestarantCard Rest_data={restarant} />
+                )}
               </Link>
             ))
           : //when ever we are doing loop/map ,we have always to give key -

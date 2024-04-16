@@ -31,7 +31,7 @@ const [darkMode,setDarkMode]=useState('🌞')
     <div className="flex items-center ">
       
         <ul className="flex ">
-            <li>Online Status:{onlineStatus ? "✅" : "🔴"}</li>
+            {/* <li>Online Status:{onlineStatus ? "✅" : "🔴"}</li> */}
             <button className="px-3 text-emerald-50	"
             onClick={()=>{
                 theme=='white' ? settheme(document.body.style.background = 'orange') : settheme(document.body.style = 'white');
@@ -39,19 +39,19 @@ const [darkMode,setDarkMode]=useState('🌞')
                 darkMode==='🌚'? setDarkMode('🌞'):setDarkMode('🌚');
             }}
             > {darkMode}</button>
-            <li className="px-3"><Link to='/'>HOME</Link></li>
-            <li className="px-3"><Link to='/about'>ABOUT</Link></li>
-            <li className="px-3"><Link to='/contact'>CONTACT</Link></li>
-            <li className="px-3"><Link to='/grocery'>Grocery</Link></li>
+            <li className="px-3 hover:bg-white hover:rounded-lg"><Link to='/'>HOME</Link></li>
+            <li className="px-3  hover:bg-white hover:rounded-lg"><Link to='/about'>ABOUT</Link></li>
+            <li className="px-3  hover:bg-white hover:rounded-lg"><Link to='/contact'>CONTACT</Link></li>
+            <li className="px-3  hover:bg-white hover:rounded-lg"><Link to='/grocery'>Grocery</Link></li>
 
-            <li className="px-3"><Link to='/cart'>Cart - {cartItems.length} items</Link></li>
-          <li className="px-3">
-             {/* <Link to={'./LogIn'}> LOG IN</Link> */}
+            <li className="px-3  hover:bg-white hover:rounded-lg"><Link to='/cart'>Cart - {cartItems.length} items</Link></li>
+          <li className="px-3  hover:bg-white hover:rounded-lg">
+              <Link to={'./LogIn'}>
              <Button onClick={()=>{
                 btn_name==='Log In'?setbtn_name("Log Out"):setbtn_name("Log In");
-             }}>{btn_name}</Button>
+             }}>{btn_name} <span className="">{onlineStatus ? "🟢" : "🔴"}</span></Button></Link>
              </li>
-          <li className="px-3">{loggedInUser}</li>
+          {/* <li className="px-3">{loggedInUser}</li> */}
 
         </ul>
     </div>
