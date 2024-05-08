@@ -126,11 +126,13 @@ const Body = () => {
                 key={restarant.info.id}
                 to={"/restaurants/" + restarant.info.id}
               >
-                {restarant.info.avgRating > 4 ? (
+                {/* {restarant.info.avgRating > 4 ? (
                   <RestarantCardPromoted Rest_data={restarant} />
                 ) : (
                   <RestarantCard Rest_data={restarant} />
-                )}
+                )} */}
+                                  <RestarantCard Rest_data={restarant} />
+
               </Link>
             ))
           : //when ever we are doing loop/map ,we have always to give key -

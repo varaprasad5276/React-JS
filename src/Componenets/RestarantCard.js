@@ -27,7 +27,7 @@ const RestarantCard=(Props)=>{
               }</h4>
               <h4 id='time'>{sla.deliveryTime} Min's</h4>
               <p className="text-ellipsis text-nowrap overflow-hidden">{cuisines.join(", ")}</p>
-<p>{loggedInUser}</p>
+{/* <p>{loggedInUser}</p> */}
             </div>
             </div>
     )

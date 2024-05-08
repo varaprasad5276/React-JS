@@ -7,6 +7,11 @@ const RestarantCategory = ({ data, showItems, setshowIndex }) => {
     setshowIndex();
   }
   // console.log(showItems);
+  const [ai,sai]=useState('')
+  function addedItem(item){
+sai(item)
+  }
+  console.log('added item',ai);
   return (
     <div>
       {/* accordion header */}
@@ -20,7 +25,7 @@ const RestarantCategory = ({ data, showItems, setshowIndex }) => {
           </span>
           <span>🔽</span>
         </div>
-        {showItems && <ItemList items={data.card.card.itemCards} />}
+        {showItems && <ItemList items={data.card.card.itemCards} Addedit={addedItem}/>}
       </div>
     </div>
   );

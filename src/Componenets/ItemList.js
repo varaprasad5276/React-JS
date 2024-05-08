@@ -3,10 +3,12 @@ import { ITEM_MENU_IMAGE_URL } from "../Utilities/constants";
 import {  useDispatch } from "react-redux";
 import { addItem } from "../Utilities/Redux/cartSlice";
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items,Addedit }) => {
   // console.log(items);
   const dispatch=useDispatch();
   function addItemToCart(item) {
+    console.log(item.card.info.name);
+    Addedit(item.card.info.name);
     // Dispatch the action
     dispatch(addItem(item))
   }
